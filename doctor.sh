@@ -43,7 +43,8 @@ check codex    codex --version
 [ -f "$CODEX_HOME/auth.json" ] && ok "codex logged in" || warn "codex not logged in → run: codex login"
 
 step "Workspace ($WORKSPACE)"
-for f in AGENTS.md CLAUDE.md .mcp.json .claude/settings.json .claude/skills \
+for f in AGENTS.md CLAUDE.md NOTES.md .mcp.json .claude/settings.json .claude/skills .claude/hooks/format.sh \
+         docs/context/best-practices.md docs/code-review.md \
          poc/rust-api/Cargo.toml poc/py-scripts/pyproject.toml poc/web/package.json \
          docs/adr/0000-template.md diagrams/render.sh "$CODEX_HOME/config.toml"; do
   case "$f" in /*) p="$f" ;; *) p="$WORKSPACE/$f" ;; esac

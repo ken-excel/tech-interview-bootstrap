@@ -1,6 +1,6 @@
 ---
 name: diagram
-description: Create architecture diagrams, flowcharts, sequence diagrams, ER diagrams and state machines as code (Mermaid or D2) and render them to SVG. Use when asked to draw, visualise, sketch or diagram a system, flow, data model or process.
+description: Create architecture (C4), flowchart, sequence, ER and state diagrams as code (Mermaid or D2) and render them to SVG. Use when asked to "draw", "diagram", "visualize", "sketch the architecture", "show the flow", or "what does the system look like".
 ---
 
 # Diagrams as code
@@ -23,9 +23,10 @@ cleaner layouts for architecture. For live editing during a screen share run
 
 ## Recipe
 
-1. Ask (or infer) the level: **context** (system + users + external
-   systems), **container** (services, DBs, queues), or **flow** (one request
-   end to end). Draw one level per diagram.
+1. Ask (or infer) the C4 level: **context** (system + users + external
+   systems), **container** (apps, services, DBs, queues), **component**
+   (inside one container), or a **dynamic/flow** view (one request end to
+   end). Draw one level per diagram.
 2. Keep it under ~12 nodes. Label edges with the verb + protocol
    ("writes events · Kafka").
 3. Write the file, render, then open the SVG (`open diagrams/out/name.svg`)
@@ -67,4 +68,5 @@ system: Platform {
 user -> system.web: HTTPS
 ```
 
-Check: `examples` in `diagrams/` (`architecture.d2`, `request-flow.mmd`).
+Worked examples: `diagrams/architecture.d2`, `diagrams/request-flow.mmd`,
+`diagrams/decision-flow.mmd`.

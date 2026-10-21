@@ -1,6 +1,6 @@
 ---
 name: adr
-description: Write an Architecture Decision Record or short design doc. Use when a technical choice is made or debated (database, protocol, framework, sync vs async, build vs buy), or when asked to "record", "document the decision", or "write a design doc".
+description: Write an Architecture Decision Record (ADR) or short design doc. Use when a technical choice is made or debated (database, protocol, framework, sync vs async, build vs buy), or when asked to "record this decision", "write an ADR", "document why", or "write a design doc".
 ---
 
 # Architecture Decision Records

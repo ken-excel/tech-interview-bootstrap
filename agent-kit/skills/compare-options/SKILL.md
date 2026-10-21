@@ -1,6 +1,6 @@
 ---
 name: compare-options
-description: Compare technical options (libraries, databases, architectures, algorithms) with weighted criteria and produce a scored table plus a chart. Use when asked "which should we use", "compare X vs Y", "pros and cons", or when a decision has more than one credible option.
+description: Compare technical options (libraries, databases, architectures, algorithms) with weighted criteria and produce a scored table plus a chart. Use when asked "which should we use", "compare X vs Y", "pros and cons", "trade-offs", or when a decision has more than one credible option.
 ---
 
 # Compare options

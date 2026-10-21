@@ -1,6 +1,6 @@
 ---
 name: poc-scaffold
-description: Start a proof of concept fast using the workspace starters (Rust axum backend, Python uv scripts, TypeScript Vite+React frontend). Use when asked to build, prototype, spike or scaffold something, or to add an endpoint, script or page.
+description: Start a proof of concept fast using the workspace starters (Rust axum backend, Python uv scripts, TypeScript Vite+React frontend). Use when asked to "prototype", "spike", "scaffold", "build a PoC", or to add an endpoint, script or page.
 ---
 
 # PoC scaffolding
@@ -39,7 +39,13 @@ cp -R poc/web poc/<name>-web   # then: cd poc/<name>-web && npm install
   components in `src/`. Call the API via `fetch('/api/...')` wrapped in a
   typed function.
 
+## Test-first loop (red → green)
+
+1. Write the test for the next behaviour; run it and show it **fail**.
+2. Write the minimum code to pass; run it and show it **pass**.
+3. Refactor only if it improves readability; re-run.
+
 ## Definition of done for a PoC step
 
-Builds, tests pass, one command to run it, and a 2-line note in the commit
-message saying what it proves.
+Builds, tests pass (output shown), lint/typecheck clean, one command to run
+it, and a 2-line note in the commit message saying what it proves.

@@ -12,11 +12,12 @@ from the last 6 months and say when something may be stale.
 
 ## Write these files (each ≤ 150 lines, Markdown, links inline)
 
-1. `docs/context/engineering-practices.md` — a checklist the agent should
-   follow while coding in this repo: Rust (error handling, axum patterns,
-   clippy lints worth knowing), Python (uv, ruff, typing, pytest), TypeScript
-   (strict TS, React 19 patterns, vitest), plus testing, API design, and
-   observability basics. Concrete rules, not essays.
+1. `docs/context/whats-new.md` — first read the curated
+   `docs/context/best-practices.md` (do not rewrite it). Then report only
+   what has changed or been added since it was written: new official
+   guidance from Anthropic/OpenAI, renamed settings or commands, new widely
+   adopted skills/plugins/MCP servers, and anything in it that is now
+   outdated or wrong (quote the line and give the correction with a source).
 2. `docs/context/system-design-cheatsheet.md` — numbers worth knowing
    (latency/throughput orders of magnitude), common building blocks and when
    to pick each (caches, queues, SQL vs NoSQL, consistency models), and a
@@ -32,8 +33,9 @@ from the last 6 months and say when something may be stale.
    and the config snippet for `.mcp.json` (Claude) and
    `$CODEX_HOME/config.toml` (Codex). **Do not install anything** — the
    candidate will review and decide.
-5. `docs/context/README.md` — a 10-line index of the files above and when
-   to read each.
+5. `docs/context/README.md` — update the index (keep the existing
+   `best-practices.md` entry) with one line per file you wrote and when to
+   read it.
 
 ## Rules
 

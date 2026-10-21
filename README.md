@@ -77,7 +77,10 @@ poc/py-scripts/           uv project: httpx, pydantic, rich → uv run main.py
 poc/web/                  Vite + React + TS, vitest, /api proxy → npm run dev
 docs/adr/                 ADR template
 docs/design/              design-doc template
-docs/context/             filled by `ibx gather`
+docs/context/             best-practices.md (sourced scan) + `ibx gather` output
+docs/code-review.md       review checklist with severity levels
+NOTES.md                  running decisions / next step (survives compaction)
+.claude/hooks/format.sh   auto-format .rs/.py after each Claude edit
 diagrams/                 Mermaid + D2 examples, render.sh → diagrams/out/*.svg
 viz/options_chart.py      weighted option scoring → table + chart
 ```
@@ -87,14 +90,26 @@ during the call is instant.
 
 ### Agent context
 
-- **Working agreement** in `AGENTS.md`: the candidate drives; the agent
-  restates the problem, offers options with trade-offs, works in small
-  steps, and explains each change — matching interview expectations that you
-  own the approach and can explain your reasoning.
-- **Skills** (work in both CLIs): `interview-copilot`, `adr`, `diagram`,
-  `compare-options`, `poc-scaffold`, plus `webapp-testing`, `mcp-builder`,
-  `frontend-design`, `skill-creator` linked from
+Built from current guidance by Anthropic, OpenAI and widely used open-source
+projects — see
+[`docs/context/best-practices.md`](workspace-template/docs/context/best-practices.md)
+for the sourced scan, and §8 there for how each practice maps to this kit.
+
+- **Working agreement** in `AGENTS.md` (kept short on purpose — both vendors
+  warn that long instruction files get ignored): the candidate drives; the
+  agent offers options and waits, works explore → plan → implement, test
+  first, and shows evidence (command + output) for every step. "Done" is
+  defined explicitly.
+- **Skills** (work in both CLIs): `interview-copilot` (default loop),
+  `spec` (interview → SPEC.md), `review` (fresh-context review against
+  `docs/code-review.md`), `adr`, `diagram` (C4 levels), `compare-options`,
+  `poc-scaffold`, plus `webapp-testing`, `mcp-builder`, `frontend-design`,
+  `skill-creator` linked from
   [anthropics/skills](https://github.com/anthropics/skills).
+- **Guardrails over instructions:** a Claude Code hook formats Rust/Python
+  after every edit; permission allow/deny lists in `.claude/settings.json`;
+  Codex runs `workspace-write` + `on-request` approvals.
+- **NOTES.md** keeps decisions and the next step outside the context window.
 - **MCP servers** (both CLIs): `context7` (current library docs),
   `sequential-thinking`, `playwright` (browser checks); Codex also gets
   `fetch`.
@@ -104,6 +119,15 @@ during the call is instant.
   current agent tooling, and a ranked `proposed-installs.md`. It is allowed to
   write only into `docs/context/` and installs nothing; you review and decide.
   `ibx gather both` runs both agents for comparison.
+
+### Optional: heavier workflow plugin
+
+[obra/superpowers](https://github.com/obra/superpowers) (brainstorm → plan →
+subagent execution → TDD → review) is the most widely adopted open-source
+workflow for both CLIs. It's not installed by default because its
+full-ceremony loop is heavy for a 60-minute interview. To try it:
+`/plugin install superpowers@claude-plugins-official` in Claude Code, or
+`/plugins` → search "superpowers" in Codex.
 
 ## `ibx` commands
 

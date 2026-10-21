@@ -36,10 +36,11 @@ copy_missing "$KIT_DIR/agent-kit/skills" "$WORKSPACE/.agents/skills"
 ok "templates copied (existing files untouched)"
 
 if [ "$DRY_RUN" != "1" ]; then
-  # Claude reads .claude/skills; Codex reads $CODEX_HOME/skills. One source of truth.
+  # One source of truth in .agents/skills: Codex reads it from the repo
+  # (and from $CODEX_HOME/skills, linked below); Claude reads .claude/skills.
   mkdir -p "$WORKSPACE/.claude"
   [ -e "$WORKSPACE/.claude/skills" ] || ln -s ../.agents/skills "$WORKSPACE/.claude/skills"
-  chmod +x "$WORKSPACE"/diagrams/*.sh "$WORKSPACE"/viz/*.py 2>/dev/null || true
+  chmod +x "$WORKSPACE"/diagrams/*.sh "$WORKSPACE"/viz/*.py "$WORKSPACE"/.claude/hooks/*.sh 2>/dev/null || true
 fi
 
 step "Vendor skills"

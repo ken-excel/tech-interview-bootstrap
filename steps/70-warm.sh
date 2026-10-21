@@ -12,8 +12,8 @@ step "Warm-up: build + test every starter"
 W="$WORKSPACE"
 ( cd "$W/poc/rust-api"   && run cargo build --quiet && run cargo test --quiet ) && ok "rust-api builds, tests pass"      || warn "rust-api warm-up failed"
 ( cd "$W/poc/py-scripts" && run uv sync --quiet && run uv run --quiet pytest -q ) && ok "py-scripts syncs, tests pass" || warn "py-scripts warm-up failed"
-( cd "$W/poc/web"        && run npm install --no-fund --no-audit --loglevel=error && run npm test --silent && run npm run build --silent ) \
-  && ok "web installs, tests pass, builds" || warn "web warm-up failed"
+( cd "$W/poc/web"        && run npm install --no-fund --no-audit --loglevel=error && run npm test --silent && run npm run lint --silent && run npm run build --silent ) \
+  && ok "web installs, tests + lint pass, builds" || warn "web warm-up failed"
 
 step "Warm-up: diagrams + charts"
 ( cd "$W" && run ./diagrams/render.sh ) && ok "diagrams render (mermaid + d2)" || warn "diagram render failed"

@@ -5,6 +5,12 @@
 # so `ibx uninstall` removes them along with everything else.
 cli_auth_credentials_store = "file"
 
+# Tight defaults (OpenAI best practice): edits allowed inside the workspace,
+# the model asks before anything else. Web search uses the cached index.
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+web_search = "cached"
+
 [projects."@WORKSPACE@"]
 trust_level = "trusted"
 
