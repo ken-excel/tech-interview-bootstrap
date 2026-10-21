@@ -1,0 +1,12 @@
+[
+  {"service": "api", "latency_ms": 12, "ok": true},
+  {"service": "api", "latency_ms": 15, "ok": true},
+  {"service": "api", "latency_ms": 18, "ok": true},
+  {"service": "api", "latency_ms": 95, "ok": false},
+  {"service": "api", "latency_ms": 14, "ok": true},
+  {"service": "web", "latency_ms": 40, "ok": true},
+  {"service": "web", "latency_ms": 55, "ok": true},
+  {"service": "web", "latency_ms": 61, "ok": true},
+  {"service": "worker", "latency_ms": 210, "ok": true},
+  {"service": "worker", "latency_ms": 380, "ok": false}
+]

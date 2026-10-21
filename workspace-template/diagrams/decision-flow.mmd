@@ -1,0 +1,9 @@
+flowchart TD
+  start([New requirement]) --> clear{Requirements clear?}
+  clear -- no --> ask[Ask clarifying questions] --> clear
+  clear -- yes --> options[List 2–3 options]
+  options --> score[Score with weighted criteria]
+  score --> pick{Clear winner?}
+  pick -- yes --> adr[Write ADR] --> poc[Build smallest PoC]
+  pick -- no --> spike[Time-boxed spike on top 2] --> score
+  poc --> done([Demo + explain trade-offs])

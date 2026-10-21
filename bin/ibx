@@ -1,0 +1,23 @@
+#!/bin/bash
+# ibx — one command for the interview environment.
+#   ibx doctor [--mcp]   verify setup
+#   ibx gather [claude|codex]  let an agent research tooling/practices into docs/context/
+#   ibx render           render diagrams/*.mmd and *.d2 to SVG
+#   ibx watch <file.d2>  live-reload a D2 diagram in the browser (great on screen share)
+#   ibx update           re-run bootstrap (idempotent)
+#   ibx uninstall [...]  remove everything (flags: --yes --all --keep-workspace --dry-run)
+set -euo pipefail
+SELF="$(readlink "$0" 2>/dev/null || echo "$0")"
+KIT="$(cd "$(dirname "$SELF")/.." && pwd)"
+WS="${IBX_WORKSPACE:-$HOME/interview}"
+
+cmd="${1:-help}"; [ $# -gt 0 ] && shift
+case "$cmd" in
+  doctor)    exec "$KIT/doctor.sh" "$@" ;;
+  gather)    exec "$KIT/agent-kit/gather.sh" "$@" ;;
+  render)    cd "$WS" && exec ./diagrams/render.sh "$@" ;;
+  watch)     cd "$WS" && exec d2 --watch "${1:?usage: ibx watch diagrams/file.d2}" ;;
+  update)    exec "$KIT/bootstrap.sh" "$@" ;;
+  uninstall) exec "$KIT/uninstall.sh" "$@" ;;
+  *)         sed -n '2,8p' "$SELF" | sed 's/^# \{0,1\}//' ;;
+esac

@@ -1,0 +1,17 @@
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant W as Web (TS)
+  participant A as API (Rust)
+  participant D as Postgres
+  U->>W: Submit form
+  W->>A: POST /api/items {name}
+  A->>A: validate (non-empty name)
+  alt invalid
+    A-->>W: 422 {error}
+  else valid
+    A->>D: INSERT item
+    D-->>A: id
+    A-->>W: 201 {id, name}
+  end
+  W-->>U: Show result

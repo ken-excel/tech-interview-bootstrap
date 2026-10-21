@@ -1,0 +1,9 @@
+{
+  "title": "Message broker for order events",
+  "criteria": {"throughput": 3, "ops cost": 2, "team familiarity": 2, "ordering": 3},
+  "options": {
+    "Kafka":    {"throughput": 5, "ops cost": 2, "team familiarity": 3, "ordering": 5},
+    "RabbitMQ": {"throughput": 3, "ops cost": 4, "team familiarity": 4, "ordering": 3},
+    "SQS FIFO": {"throughput": 2, "ops cost": 5, "team familiarity": 4, "ordering": 4}
+  }
+}

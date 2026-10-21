@@ -1,0 +1,19 @@
+direction: right
+
+user: User {shape: person}
+
+platform: Platform {
+  web: Web app\n(TypeScript, Vite + React)
+  api: API\n(Rust, axum)
+  worker: Jobs\n(Python scripts)
+  db: Postgres {shape: cylinder}
+  queue: Queue {shape: queue}
+
+  web -> api: REST /api
+  api -> db: SQL
+  api -> queue: publish
+  queue -> worker: consume
+  worker -> db: write results
+}
+
+user -> platform.web: HTTPS
